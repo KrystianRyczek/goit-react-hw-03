@@ -83,6 +83,7 @@ console.log("itemsPhoneBook",itemsPhoneBook())
       setSearchValue={setSearchValue}
       searchValue={searchValue}/>
       <PhoneBook
+      searchingActive={searchingActive}
       itemsPhoneBook = {itemsPhoneBook()}
       handleClick={handleClick}
       />

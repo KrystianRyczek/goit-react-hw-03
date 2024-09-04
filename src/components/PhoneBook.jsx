@@ -5,7 +5,7 @@ const Btn = ({componentId, handleClick})=>{
       );
 }
 
-export const PhoneBook =({itemsPhoneBook, handleClick, })=>{
+export const PhoneBook =({itemsPhoneBook, handleClick, searchingActive})=>{
 
 
                                                                                                 
@@ -29,7 +29,7 @@ export const PhoneBook =({itemsPhoneBook, handleClick, })=>{
                                                                                                                     })}
                                                                                 </div>
                                                                             </div>)
-                                                                          : <h2>Result not found</h2>
+                                                                          : searchingActive? <h2>Result not found</h2>: <h2>Lack of added contacts</h2>
                                                             )}
     
 
