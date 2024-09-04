@@ -6,7 +6,7 @@ export const SearchUserForm =({hendeleFilter, setSearchValue, searchValue})=>{
   
   
 return      (<div>
-                <h1>Search</h1>
+                <h1>Searching contact by name</h1>
                 <Formik 
                 initialValues={{filter:""}}
                 

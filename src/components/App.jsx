@@ -22,12 +22,13 @@ function App() {
   const [contacts, setContacts] = useState(storedContacts)
   const [filterdContacts, setFilterdContacts] = useState([])
   const [searchValue, setSearchValue] = useState("")
+  //const [searchValueFound, setSearchValueFound] = useState(true)
 
   useEffect(() => {
     window.localStorage.setItem("contacts", JSON.stringify(contacts))
   }, [contacts]);
 
-  const addContact = (values)=>{
+   const addContact = (values)=>{
     console.log(values)
     setContacts([...contacts,{id:`id-${Date.now()}`,...values}])
     if(searchValue!==""){
@@ -37,26 +38,42 @@ function App() {
     }
   }
   const hendeleFilter = (value)=>{
-        setFilterdContacts(contacts.filter((contact)=>contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())))
+
+        setFilterdContacts(value.trim()!==""
+                                            ? contacts.filter((contact)=>contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())) 
+                                            : [])
+
   }
 
   const handleClick = (componentId)=>{
     const id= componentId.componentId
     setContacts(contacts.filter((contact)=>contact.id.toLocaleLowerCase()!==id.toLocaleLowerCase()))
     setFilterdContacts(filterdContacts.filter((filterdContact)=>filterdContact.id.toLocaleLowerCase()!==id.toLocaleLowerCase()))
-}    
+}     
+
+
+
+
+const searchingActive = (searchValue.trim()!==""
+                                               ? true 
+                                               : false)
+
 const itemsPhoneBook=()=>{
-  if (searchValue.trim()==="") {
+  if (filterdContacts.length===0 & !searchingActive) {
     return (contacts)
   }
-  return (filterdContacts.length!==0 ? filterdContacts : contacts)
+    return (filterdContacts)
+  
 }
 
 
-console.log("searchValue", searchValue)
 
 
-console.log(searchValue)
+
+
+console.log("filterdContacts",filterdContacts)
+console.log("searchingActive",searchingActive)
+console.log("itemsPhoneBook",itemsPhoneBook())
   return (
     <>
       <AddUserForm
