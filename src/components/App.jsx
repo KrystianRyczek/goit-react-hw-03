@@ -23,7 +23,6 @@ function App() {
   const [filterdContacts, setFilterdContacts] = useState([])
   const [searchValue, setSearchValue] = useState("")
 
-
   useEffect(() => {
     window.localStorage.setItem("contacts", JSON.stringify(contacts))
   }, [contacts]);
@@ -40,13 +39,22 @@ function App() {
   const hendeleFilter = (value)=>{
         setFilterdContacts(contacts.filter((contact)=>contact.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())))
   }
-  const itemsPhoneBook=filterdContacts.length!==0 ? filterdContacts : contacts
-  
+
   const handleClick = (componentId)=>{
     const id= componentId.componentId
     setContacts(contacts.filter((contact)=>contact.id.toLocaleLowerCase()!==id.toLocaleLowerCase()))
     setFilterdContacts(filterdContacts.filter((filterdContact)=>filterdContact.id.toLocaleLowerCase()!==id.toLocaleLowerCase()))
 }    
+const itemsPhoneBook=()=>{
+  if (searchValue.trim()==="") {
+    return (contacts)
+  }
+  return (filterdContacts.length!==0 ? filterdContacts : contacts)
+}
+
+
+console.log("searchValue", searchValue)
+
 
 console.log(searchValue)
   return (
@@ -58,7 +66,7 @@ console.log(searchValue)
       setSearchValue={setSearchValue}
       searchValue={searchValue}/>
       <PhoneBook
-      itemsPhoneBook = {itemsPhoneBook}
+      itemsPhoneBook = {itemsPhoneBook()}
       handleClick={handleClick}
       />
     </>

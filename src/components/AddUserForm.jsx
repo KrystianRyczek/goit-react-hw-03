@@ -27,7 +27,7 @@ return      (<div>
                   <Form className="add-user-form">
                     {/* <labels></labels> useID()*/}
                     <div className="Add-user-box">
-                    <Field className="add-user-name" type="text" name="name" placeholder="Name and Surneme"/>
+                    <Field className="add-user-name" type="text" name="name" placeholder="Name and Surneme"/ >
                     <ErrorMessage name="name" as='span' className="error-msg"/>
                     </div>
                     <div>
