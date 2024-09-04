@@ -29,7 +29,7 @@ export const PhoneBook =({itemsPhoneBook, handleClick, searchingActive})=>{
                                                                                                                     })}
                                                                                 </div>
                                                                             </div>)
-                                                                          : searchingActive? <h2>Result not found</h2>: <h2>Lack of added contacts</h2>
+                                                                          : searchingActive? <h2>Result not found</h2>: <h1>Your phonebook is empty</h1>
                                                             )}
     
 
