@@ -1,19 +1,10 @@
 import {Field, Form, Formik, ErrorMessage} from "formik";
-import * as Yup from 'yup';
+import{useAddUserForm} from '../hooks/useAddUserForm'
 
-const Shema = Yup.object().shape({
-  name: Yup.string()
-           .min(2,"Name is too short")
-           .max(20,"Name is too long")
-           .required('Name is required'),
-  number:  Yup.number()
-              .typeError("That doesn't look like a phone number").positive("A phone number can't start with a minus")
-              .integer("A phone number can't include a decimal point")
-              .min(8)
-              .required('A phone number is required')
-})
+export const AddUserForm =()=>{
 
-export const AddUserForm =({addContact})=>{
+  const {Shema, addNewContact} = useAddUserForm()
+
 return      (<div>
                 <h2>Add New Constat</h2>
                 <Formik 
@@ -21,13 +12,13 @@ return      (<div>
                 initialValues={{name:"", number:""}} 
                 onSubmit={
                   (values, actions)=>{
-                    addContact(values)
+                    addNewContact(values)
                     actions.resetForm()
                   }}>
                   <Form className="add-user-form">
                     {/* <labels></labels> useID()*/}
                     <div className="Add-user-box">
-                    <Field className="add-user-name" type="text" name="name" placeholder="Name and Surneme"/ >
+                    <Field className="add-user-name" type="text" name="name" placeholder="Name and Surneme"/>
                     <ErrorMessage name="name" as='span' className="error-msg"/>
                     </div>
                     <div>
@@ -38,5 +29,24 @@ return      (<div>
                   </Form>
                 </Formik>
              </div>)
+
+
+
+      
 }
     
+
+// export const AddUserForm =({submit})=>{
+//   return(
+//     <div>
+//       <form onSubmit={(event)=>{
+//         event.preventDefault()
+//         submit(event)
+//       }}>
+//         <input name="text"></input>
+//         <button>Submit</button>
+//       </form>
+//     </div>
+//   )
+//   }
+      

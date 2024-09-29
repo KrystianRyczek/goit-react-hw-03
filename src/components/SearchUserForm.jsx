@@ -1,35 +1,28 @@
 import {Field, Form, Formik} from "formik"
+import{useSearchUserForm} from '../hooks/useSearchUserForm'
 
+export const SearchUserForm =()=>{
 
+  const {filterValue, updateFilterValue} = useSearchUserForm()
 
-export const SearchUserForm =({hendeleFilter, setSearchValue, searchValue})=>{
-  
-  
+  console.log("filterValue:", filterValue)
 return      (<div>
                 <h1>Searching contact by name</h1>
                 <Formik 
                 initialValues={{filter:""}}
-                
+                onSubmit={(event)=>{}}
                 >
                   <Form>
-                    {/* <labels></labels> useID()*/}
                     <Field 
                     type="text" 
                     name="filter"
                     placeholder="Search..."
-                    value= {searchValue}
+                    value= {filterValue}
                     onChange={(event)=>{
-                                        setSearchValue(event.target.value)
-                                        hendeleFilter(event.target.value)
+                      updateFilterValue(event.target.value)
                                        }}
                     />
                   </Form>
                 </Formik>
              </div>)
 }
-    
-// onChange={(event)=>{
-//   event.preventDefault()
-
-//   hendeleFilter(event.target)
-//   }}
